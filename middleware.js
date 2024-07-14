@@ -5,13 +5,14 @@ import { parseDateString } from '@/utils';
 
 const Middleware = (req) => {
   const NEXT_TOKEN = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
-  const pathName = req.nextUrl.pathname;
 
   if (!NEXT_TOKEN) {
-    throw new Error('NEXT_PUBLIC_ACCESS_TOKEN environment variable is not set');
+    console.warn('NEXT_PUBLIC_ACCESS_TOKEN environment variable is not set');
+    return NextResponse.next(); // Allow the request to proceed if the token is not set
   }
 
   const cookieData = req.cookies?.get(NEXT_TOKEN);
+  const pathName = req.nextUrl.pathname;
 
   if (pathName.toLowerCase() === '/login') {
     if (cookieData && cookieData.value) {
