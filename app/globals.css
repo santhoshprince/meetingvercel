@@ -34,3 +34,6 @@ body {
   }
 }
 
+.card-body:hover {
+  background-color: var(--royalBlue) !important;
+}

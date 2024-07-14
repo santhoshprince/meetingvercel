@@ -2,8 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Calendar.module.css';
 import { BASE_URL } from "@/constants/ENVIRONMENT_VARIABLES";
+
 const MeetingModal = ({ meetings, onClose }) => {
   const [meetingDetails, setMeetingDetails] = useState([]);
+  const [selectedMeeting, setSelectedMeeting] = useState(null);
+  const [showMeetingDetailsModal, setShowMeetingDetailsModal] = useState(false);
+  const [showJoinModal, setShowJoinModal] = useState(false);
 
   useEffect(() => {
     fetchMeetingDetails(meetings);
@@ -19,23 +23,64 @@ const MeetingModal = ({ meetings, onClose }) => {
     );
     setMeetingDetails(details);
   };
-  console.log("meetingDetails",meetingDetails)
+
+  const handleMeetingDetailsClick = (meeting) => {
+    setSelectedMeeting(meeting);
+    setShowMeetingDetailsModal(true);
+  };
+
+  const handleCloseMeetingDetailsModal = () => {
+    setShowMeetingDetailsModal(false);
+    setSelectedMeeting(null);
+  };
+
+  const handleJoinMeeting = (link) => {
+    // Open Google Meet link in new tab
+    window.open(link, '_blank');
+  };
 
   return (
-    <div className={styles.modal}>
-      <div className={styles.modalContent}>
-        <span className={styles.close} onClick={onClose}>&times;</span>
-        <h2 style={{borderBottom: "1px solid #b4a8a8",paddingBottom: "10px"}}>Meeting Details</h2>
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <button className="modal-close" onClick={onClose}>
+          &times;
+        </button>
         {meetingDetails.map((meeting, index) => (
           <div key={index}>
-              <h4 style={{paddingTop: "10px"}}>Meeting {index + 1}</h4>
-            {/* <h3>{meeting.title}</h3> */}
-            <p><strong>Description:</strong>{meeting.desc}</p>
-            <p><strong>Start Time:</strong> {new Date(meeting.start).toLocaleString()}</p>
-            <p><strong>End Time:</strong> {new Date(meeting.end).toLocaleString()}</p>
+            <div className='card' style={{width: "18rem", marginTop: "10px"}}>
+              <div className="card-body">
+                <p><strong>Description:</strong> {meeting.desc}</p>
+                <p><strong>Start Time:</strong> {new Date(meeting.start).toLocaleString()}</p>
+                <p><strong>End Time:</strong> {new Date(meeting.end).toLocaleString()}</p>
+                <button className="btn btn-primary" onClick={() => handleMeetingDetailsClick(meeting)}>
+                  View Details
+                </button>
+              </div>
+            </div>
           </div>
         ))}
       </div>
+      {/* Meeting Details Modal */}
+      {showMeetingDetailsModal && selectedMeeting && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button className="modal-close" onClick={handleCloseMeetingDetailsModal}>
+              &times;
+            </button>
+            <h3>Meeting Details</h3>
+            <p><strong>Description:</strong> {selectedMeeting.desc}</p>
+            <p><strong>Start Time:</strong> {new Date(selectedMeeting.start).toLocaleString()}</p>
+            <p><strong>End Time:</strong> {new Date(selectedMeeting.end).toLocaleString()}</p>
+            {selectedMeeting.link && (
+              
+              <button className="btn btn-primary" onClick={() => handleJoinMeeting(selectedMeeting.link)}>
+                Join Meeting
+              </button>
+            )}
+            {console.log("selectedMeeting",selectedMeeting)}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
