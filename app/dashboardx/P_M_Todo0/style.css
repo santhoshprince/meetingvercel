@@ -143,15 +143,17 @@ h2 {
 }
 .event-title{
   position: absolute;
-    top: -12px;
-    right: -7px;
-    font-size: 11px;
-    background-color: #ffd168;
-    padding: 4px;
-    border-radius: 100%;
-    /* height: 15px; */
-    width: 14px;
-    height: 18px;
+  top: -12px;
+  right: -7px;
+  font-size: 10px;
+  background-color: #ffd168;
+  padding: 4px;
+  border-radius: 100%;
+  /* height: 15px; */
+  width: 14px;
+  height: 13px;
+  text-align: center;
+  padding-top: 0px;
 }
 .rbc-event{
   background-color: unset !important;
