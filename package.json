@@ -19,6 +19,7 @@
     "@mui/x-date-pickers": "^6.19.6",
     "@mui/x-date-pickers-pro": "^6.19.6",
     "@reduxjs/toolkit": "^2.2.2",
+    "@types/jwt-decode": "^3.1.0",
     "@types/react-redux": "^7.1.33",
     "@types/redux": "^3.6.0",
     "@types/redux-thunk": "^2.1.0",

@@ -282,9 +282,9 @@ const Home:React.FC  = ({}) => {
                     samllText="View All"
                     viewAllPath={"/CandidateStatusList"} className={undefined} classTitle={undefined} filterBtnClass={undefined}                  />
                   <CandidateStatus />
-
+{/* 
                   <h1>Calendar</h1>
-                  <CalendarView fromDate="2024-04-01" toDate="2024-04-30" />
+                  <CalendarView fromDate="2024-04-01" toDate="2024-04-30" /> */}
                   
                 </div>
               </div>
