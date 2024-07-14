@@ -37,5 +37,8 @@ export const INVENTORY_ASSETS = "/inventory/assets/";
 export const COUNTRY_LIST_ENDPOINT = "/countries";
 
 export const USER_HIERACHY = "/users/userhierarchy";
+export const CALENDAR_ENDPOINT = "/calendar_app/api/calendar";
+export const CALENDAR_MEETING_ENDPOINT = "/calendar_app/api/calendar_meeting";
+
 
 

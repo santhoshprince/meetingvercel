@@ -38,6 +38,12 @@ export const GET_UPCOMINGS_API = () =>
     // Additional parameters if needed
   });
 
+
+export const GET_CALENDAR_API = () =>
+  makeRequest(API_ENDPOINTS.CALENDAR_ENDPOINT, null, "get");
+
+export const GET_CALENDAR_MEETING_API = () =>
+  makeRequest(API_ENDPOINTS.CALENDAR_MEETING_ENDPOINT, null, "get");
 // Add more API functions as per your endpoints
 
 // Example function with parameters
